@@ -1,0 +1,41 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ingress
+spec:
+  defaultBackend:
+    service:
+      name: ImplementationSpecific
+      port:
+        number: 80
+  rules:
+  - http:
+      paths:
+      - path: /config/*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: configuration-api-nodeport
+            port:
+              number: 80
+      - path: /review/*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: review-api-nodeport
+            port:
+              number: 80
+      - path: /user/*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: user-api-nodeport
+            port:
+              number: 80
+      - path: /question/*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: question-api-nodeport
+            port:
+              number: 80              
